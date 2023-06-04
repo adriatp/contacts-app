@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @contact %>
+<%= turbo_stream.update "contact_notice" do %>
+  <%= render "layouts/notice", notice: notice %>
+<% end %>
