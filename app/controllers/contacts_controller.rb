@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts or /contacts.json
   def index
     @q = Contact.ransack(params[:q])
-    @contacts = @q.result(distinct: true).page(params[:page])
+    @contacts = @q.result(distinct: true).order(:lastname).page(params[:page])
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -27,10 +27,9 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
         format.html { redirect_to contact_url(@contact), notice: "Contact was successfully created." }
-        format.json { render :show, status: :created, location: @contact }
+        format.turbo_stream { flash.now[:notice] = "Contact was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,10 +39,9 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.update(contact_params)
         format.html { redirect_to contact_url(@contact), notice: "Contact was successfully updated." }
-        format.json { render :show, status: :ok, location: @contact }
+        format.turbo_stream { flash.now[:notice] = "Contact was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +52,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:notice] = "Contact was successfully destroyed." }
     end
   end
 
