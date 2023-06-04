@@ -1,13 +1,15 @@
-<%= link_to contact_path(contact), style: 'text-decoration: none;' do %>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    <p class="align-middle m-0">
-      <strong><%= full_name(contact) %></strong><br>
-      <small style="color: grey;"><i class="bi bi-telephone-fill"></i>&nbsp;<%= contact.phone %></small>
-    </p>
-    <object>
-      <%= link_to contact_path(contact), method: :delete, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', action: "click->contacts#delete" } do %>
-        <i class="bi bi-trash-fill"></i>
-      <% end %>
-    </object>
-  </li>
+<%= turbo_frame_tag dom_id(contact) do %>
+  <%= link_to edit_contact_path(contact), style: 'text-decoration: none;' do %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <p class="align-middle m-0">
+        <strong><%= full_name(contact) %></strong><br>
+        <small style="color: grey;"><i class="bi bi-telephone-fill"></i>&nbsp;<%= contact.phone %></small>
+      </p>
+      <object>
+        <%= link_to contact_path(contact), method: :delete, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      </object>
+    </li>
+  <% end %>
 <% end %>

@@ -1,14 +1,10 @@
-<%= turbo_stream_from :contacts %>
 <div class="container" data-controller="contacts" style="max-width: 700px;">
-  <div>
-    <p style="color: green"><%= notice %></p>
-  </div>
   <div class="row mb-3">
     <div class="col-6">
       <h2>Contacts</h2>
     </div>
     <div class="col-6">
-      <%= link_to "+ Add contact", new_contact_path, class: "btn btn-primary", style: 'float: right;' %>
+      <%= link_to "+ Add contact", new_contact_path, class: "btn btn-primary", style: 'float: right;', data: { turbo_frame: dom_id(Contact.new) } %>
     </div>
   </div>
   <div class="row mb-3">
@@ -21,20 +17,25 @@
       <% end %>
     </div>
   </div>
-  <%= turbo_frame_tag :contacts do %>
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <ul class="list-group">
+  <%= turbo_stream_from :contacts %>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <ul class="list-group">
+        <%= turbo_frame_tag "contact_notice" do %>
+          <%= render 'layouts/notice', notice: notice %>
+        <% end %>
+        <%= turbo_frame_tag :contacts do %>
+          <%= turbo_frame_tag Contact.new %>
           <% @contacts.each do |contact| %>
             <%= render contact %>
           <% end %>
-        </ul>
-      </div>
+        <% end %>
+      </ul>
     </div>
-    <div class="row mt-3 mb-3">
-      <div class="col-12 d-flex justify-content-center">
-        <%= paginate @contacts, window: 1 %>
-      </div>
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col-12 d-flex justify-content-center">
+      <%= paginate @contacts, window: 1 %>
     </div>
-  <% end %>
+  </div>
 </div>

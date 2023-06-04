@@ -1,8 +1,7 @@
 <%= form_with(model: contact) do |form| %>
   <% if contact.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
+    <div class="alert alert-danger mt-2" role="alert">
+      <h5><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h5>
       <ul>
         <% contact.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -28,9 +27,11 @@
 
   <div class="d-flex flex-row-reverse">
     <%= form.submit class: "btn btn-primary", style: 'margin-left: 15px;' %>
-    <% if @contact.id.present? %>
+    <% if contact.id.present? %>
       <%= link_to "Cancel", contact_path(@contact), class: "btn btn-danger" %>
-    <% end %>
+    <% else %>
+      <%= link_to "Cancel", contacts_path, class: "btn btn-danger" %>
+    <% end %> 
   </div>
 
 <% end %>
