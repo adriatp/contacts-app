@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
-import ContactController from "./contacts_controller"
-application.register("delete", ContactController)
+import ContactsController from "./contacts_controller"
+application.register("contacts", ContactsController)
+
+import SearchFormController from "./search_form_controller"
+application.register("search-form", SearchFormController)
