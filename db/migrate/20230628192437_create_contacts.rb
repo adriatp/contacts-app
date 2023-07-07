@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This migration creates the 'contacts' table in the database.
+# The 'contacts' table stores information about individual contacts.
 class CreateContacts < ActiveRecord::Migration[7.0]
   def change
     create_table :contacts do |t|

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The ApplicationRecord class is the base class for all models in the Rails application.
+# It provides common functionality and configuration for interacting with the database.
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 

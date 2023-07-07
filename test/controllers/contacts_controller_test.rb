@@ -4,7 +4,7 @@ require 'test_helper'
 
 class ContactsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @contact = contacts(:fix_1)
+    @contact = contacts('fix_1')
   end
 
   test 'should get index' do

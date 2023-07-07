@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This class represents a contact with a first name, last name, and phone number.
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show edit update destroy]
 

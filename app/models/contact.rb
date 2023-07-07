@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The Contact class represents a contact entity in the Rails application.
+# It encapsulates attributes and behavior related to a contact.
 class Contact < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true

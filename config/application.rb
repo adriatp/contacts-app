@@ -8,6 +8,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# The ContactsApp::Application class represents the application object for the ContactsApp application.
+# It serves as the entry point for the Rails application and handles initialization and configuration.
 module ContactsApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
